@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Color({ name, rgb }) {
-  const hex = '#' + rgb.red.toString(16).toUpperCase() + rgb.green.toString(16).toUpperCase() + rgb.blue.toString(16).toUpperCase();
+  const hex = '#' + rgb.red.toString(16).toUpperCase().padStart(2, 0) + rgb.green.toString(16).toUpperCase().padStart(2, 0) + rgb.blue.toString(16).toUpperCase().padStart(2, 0);
   
   const colorPreview = {
     backgroundColor: hex,
