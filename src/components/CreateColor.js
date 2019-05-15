@@ -8,7 +8,7 @@ export default class CreateColor extends PureComponent {
 
   state = {
     colorName: '',
-    color: '#FF0000'
+    color: '#ff0000'
   }
 
   handleSubmit = event => {

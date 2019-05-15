@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import hexToRgb from '../services/hexToRgb';
 
-function Color({ name, hex }) {
+function Color({ colorName, hex }) {
   const rgb = hexToRgb(hex);
 
   const colorStyle = {
@@ -15,7 +15,7 @@ function Color({ name, hex }) {
   return (
     <dl>
       <dt>Name</dt>
-      <dd>{name || hex} <div style={colorStyle}></div></dd>
+      <dd>{colorName || hex} <div style={colorStyle}></div></dd>
 
       <dt>Hex</dt>
       <dd>{hex}</dd>
@@ -31,7 +31,7 @@ function Color({ name, hex }) {
 }
 
 Color.propTypes = {
-  name: PropTypes.string.isRequired,
+  colorName: PropTypes.string.isRequired,
   hex: PropTypes.string.isRequired
 };
 

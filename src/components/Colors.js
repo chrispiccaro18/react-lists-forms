@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import Color from './Color';
 
 function Colors({ colors }) {
-  const colorsLis = colors.map(({ name, hex }) => (
-    <li key={`${name}${hex}`}>
-      <Color name={name} hex={hex} />
+  const colorsLis = colors.map(({ colorName, hex }) => (
+    <li key={`${colorName}${hex}`}>
+      <Color colorName={colorName} hex={hex} />
     </li>
   ));
 
