@@ -9,13 +9,21 @@ export default class TextFormatter extends PureComponent {
   handleTextChange = ({ target }) => {
     this.setState({ text: target.value });
   }
+  
+  handleColorChange = ({ target }) => {
+    this.setState({ color: target.value });
+  }
 
   render() {
-    const { text } = this.state;
+    const { text, color } = this.state;
+    const pTextStyle = {
+      color: color
+    };
     return (
       <>
         <input type="text" name="text" value={text} onChange={this.handleTextChange} />
-        <p>{text}</p>
+        <input type="color" name="color" value={color} onChange={this.handleColorChange} />
+        <p style={pTextStyle}>{text}</p>
       </>
     );
   }
