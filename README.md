@@ -1,75 +1,122 @@
-# React Lists
+# React Forms
 
 ## Agenda
 
-* Creating lists of things with map
-* keys
+* Controlled Components
+* Abstract Form Handler
 
 ## Resources
 
-* [Lists and Keys](https://reactjs.org/docs/lists-and-keys.html)
+* [Forms](https://reactjs.org/docs/forms.html)
 
-## Creating Lists
+## Controlled Components
 
-Often lists are created by mapping through an array of items.
-For each item in the array we return an element that will form
-the list.
+Form elements have internal state which is typically updated
+based on user input. In React, we have a particular way to manage
+state. Because of this we typically control form element state.
+This means that the values inside of a form element (like an `input')
+gets its value from our React state. These types of components are
+called "Controlled Components".
 
 ```js
-import React from 'react';
-import PropTypes from 'prop-types';
-import Dog from './Dog';
+import React, { PureComponent } from 'react';
 
-function Dogs({ dogs }) {
-  const dogLis = dogs.map(({ name, age, weight }) => (
-    <li>
-      <Dog name={name} age={age} weight={weight} />
-    </li>
-  ));
+export default class CreateDog extends PureComponent {
+  state = {
+    name: '',
+    age: 0,
+    weight: ''
+  }
 
-  return (
-    <ul>
-      {dogLis}
-    </ul>
-  )
+  handleSubmit = event => {
+    event.preventDefault();
+    console.log(this.state);
+  }
+
+  handleNameChange = ({ target }) => {
+    this.setState({ name: target.value });
+  }
+
+  handleAgeChange = ({ target }) => {
+    this.setState({ age: target.value });
+  }
+
+  handleWeightChange = ({ target }) => {
+    this.setState({ weight: target.value });
+  }
+
+  render() {
+    const {
+      name,
+      age,
+      weight
+    } = this.state;
+
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input name="name" value={name} onChange={this.handleNameChange} />
+        <input name="age" value={age} onChange={this.handleAgeChange} />
+        <input name="weight" value={weight} onChange={this.handleWeightChange} />
+        <button>Create Dog</button>
+      </form>
+    )
+  }
 }
-
-Dogs.propTypes = {
-  dogs: PropTypes.array.isRequired
-};
-
-export default Dogs;
 ```
 
-## Keys
+## Abstract Form Handler
 
-Keys are used internally by React to manage our list of items.
-They let React identify which items have changed, been added,
-or been removed, and prevent unnecessary re-rendering. Keys
-should be a unique string in the list.
+All three form handlers (handleNameChange, handleAgeChange, handleWeightChange)
+above have a similar structure.
 
 ```js
-import React from 'react';
-import PropTypes from 'prop-types';
-import Dog from './Dog';
-
-function Dogs({ dogs }) {
-  const dogLis = dogs.map(({ name, age, weight }) => (
-    <li>
-      <Dog key={`${name}-${age}-${weight}`} name={name} age={age} weight={weight} />
-    </li>
-  ));
-
-  return (
-    <ul>
-      {dogLis}
-    </ul>
-  )
+handleTHE_NAME_OF_THE_FIELDChange = ({ target }) => {
+  this.setState({ THE_NAME_OF_THE_FIELD: target.value })
 }
+```
 
-Dogs.propTypes = {
-  dogs: PropTypes.array.isRequired
-};
+Based on this, we can make a single handler that can handle all three fields.
 
-export default Dogs;
+```js
+handleChange = ({ target }) => {
+  this.setState({ [target.name]: target.value })
+}
+```
+
+```js
+import React, { PureComponent } from 'react';
+
+export default class CreateDog extends PureComponent {
+  state = {
+    name: '',
+    age: 0,
+    weight: ''
+  }
+
+  handleSubmit = event => {
+    event.preventDefault();
+    console.log(this.state);
+  }
+
+  handleChange = ({ target }) => {
+    this.setState({ [target.name]: target.value });
+  }
+
+  render() {
+    const {
+      name,
+      age,
+      weight
+    } = this.state;
+
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input name="name" value={name} onChange={this.handleChange} />
+        <input name="age" value={age} onChange={this.handleChange} />
+        <input name="weight" value={weight} onChange={this.handleChange} />
+        <button>Create Dog</button>
+      </form>
+    )
+  }
+}
 ```
