@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
-import Colors from './Colors';
-import CreateColor from './CreateColor';
+import Colors from '../components/Colors';
+import CreateColor from '../components/CreateColor';
 
 export default class ColorList extends PureComponent {
   state = {
