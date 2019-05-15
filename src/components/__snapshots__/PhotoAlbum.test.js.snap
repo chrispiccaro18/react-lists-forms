@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PhotoAlbum component renders a PhotoAlbum 1`] = `
+<section>
+  <h2>
+    Lauren
+  </h2>
+  <Photos
+    photos={
+      Array [
+        "img-string0",
+        "img-string1",
+        "img-string2",
+      ]
+    }
+  />
+</section>
+`;

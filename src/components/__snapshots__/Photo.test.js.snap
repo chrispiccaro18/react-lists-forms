@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Photo component renders a Photo 1`] = `
+<img
+  alt="image of img-string"
+  src="img-string"
+/>
+`;
