@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Colors component renders a Colors 1`] = `
+<ul>
+  <li
+    key="sky blue"
+  >
+    <Color
+      name="sky blue"
+      rgb={
+        Object {
+          "blue": 235,
+          "green": 206,
+          "red": 135,
+        }
+      }
+    />
+  </li>
+  <li
+    key="sky blue"
+  >
+    <Color
+      name="sky blue"
+      rgb={
+        Object {
+          "blue": 235,
+          "green": 206,
+          "red": 135,
+        }
+      }
+    />
+  </li>
+  <li
+    key="sky blue"
+  >
+    <Color
+      name="sky blue"
+      rgb={
+        Object {
+          "blue": 235,
+          "green": 206,
+          "red": 135,
+        }
+      }
+    />
+  </li>
+</ul>
+`;
