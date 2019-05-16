@@ -1,16 +1,16 @@
 import React from 'react';
 import ErrorBoundary from './ErrorBoundary.js';
-import Bad from './Bad';
-import Good from './Good';
+import YesError from './YesError';
+import NoError from './NoError';
 
 export default function App() {
   return (
     <>
       <ErrorBoundary>
-        <Bad />
+        <YesError />
       </ErrorBoundary>
       <ErrorBoundary>
-        <Good />
+        <NoError />
       </ErrorBoundary>
     </>
   );
