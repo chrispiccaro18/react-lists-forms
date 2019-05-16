@@ -3,10 +3,10 @@
 exports[`App component renders App component 1`] = `
 <Fragment>
   <ErrorBoundary>
-    <Bad />
+    <YesError />
   </ErrorBoundary>
   <ErrorBoundary>
-    <Good />
+    <NoError />
   </ErrorBoundary>
 </Fragment>
 `;

@@ -1,5 +1,5 @@
 import React from 'react';
-import ErrorBoundary from './ErrorBoundary.js';
+import ErrorBoundary from './ErrorBoundary';
 import YesError from './YesError';
 import NoError from './NoError';
 
