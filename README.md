@@ -1,122 +1,99 @@
-# React Forms
+# React children
 
 ## Agenda
 
-* Controlled Components
-* Abstract Form Handler
+* children property
+* Error Boundaries
 
 ## Resources
 
-* [Forms](https://reactjs.org/docs/forms.html)
+* [Composition vs Inheritence](https://reactjs.org/docs/composition-vs-inheritance.html)
+* [Error Boundaries](https://reactjs.org/docs/error-boundaries.html)
 
-## Controlled Components
+## Children Property
 
-Form elements have internal state which is typically updated
-based on user input. In React, we have a particular way to manage
-state. Because of this we typically control form element state.
-This means that the values inside of a form element (like an `input')
-gets its value from our React state. These types of components are
-called "Controlled Components".
+A component, like vanilla HTML, can have children.
+
+```html
+<div id="parent">
+  <p class="child"></p>
+  <p class="child"></p>
+  <p class="child"></p>
+</div>
+```
 
 ```js
-import React, { PureComponent } from 'react';
+<Parent>
+  <p>Every</p>
+  <p>Thing</p>
+  <p>Is</p>
+  <p>Fine</p>
+</Parent>
+```
 
-export default class CreateDog extends PureComponent {
+These children are passed to a component via the `children` prop.
+(NOTE: children is a `PropTypes.node`).
+
+```js
+import React from 'react';
+import PropTypes from 'prop-types';
+
+function Parent({ children }) {
+  return (
+    <>
+      {children}
+    </>
+  );
+}
+
+Parent.propTypes = {
+  children: PropTypes.node
+};
+
+export default Parent;
+```
+
+## Error Boundaries
+
+Error boundaries are components that act like a `catch`. When an
+error occurs the error boundary can catch the error and present an
+error message. If there is no error an error boundary will render
+it's children.
+
+```js
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+export default class ErrorBoundary extends Component {
+  static propTypes = {
+    children: PropTypes.node
+  }
+
   state = {
-    name: '',
-    age: 0,
-    weight: ''
+    error: false
   }
 
-  handleSubmit = event => {
-    event.preventDefault();
-    console.log(this.state);
+  static getDerivedStateFromError(error) {
+    return { error: true };
   }
 
-  handleNameChange = ({ target }) => {
-    this.setState({ name: target.value });
-  }
-
-  handleAgeChange = ({ target }) => {
-    this.setState({ age: target.value });
-  }
-
-  handleWeightChange = ({ target }) => {
-    this.setState({ weight: target.value });
+  componentDidCatch(error) {
+    console.error(error)
   }
 
   render() {
-    const {
-      name,
-      age,
-      weight
-    } = this.state;
+    if(this.state.error) {
+      return <h3>Error!</h3>
+    }
 
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <input name="name" value={name} onChange={this.handleNameChange} />
-        <input name="age" value={age} onChange={this.handleAgeChange} />
-        <input name="weight" value={weight} onChange={this.handleWeightChange} />
-        <button>Create Dog</button>
-      </form>
-    )
+    return this.props.children
   }
 }
 ```
 
-## Abstract Form Handler
+Error boundaries include at least one of:
 
-All three form handlers (handleNameChange, handleAgeChange, handleWeightChange)
-above have a similar structure.
-
-```js
-handleTHE_NAME_OF_THE_FIELDChange = ({ target }) => {
-  this.setState({ THE_NAME_OF_THE_FIELD: target.value })
-}
-```
-
-Based on this, we can make a single handler that can handle all three fields.
-
-```js
-handleChange = ({ target }) => {
-  this.setState({ [target.name]: target.value })
-}
-```
-
-```js
-import React, { PureComponent } from 'react';
-
-export default class CreateDog extends PureComponent {
-  state = {
-    name: '',
-    age: 0,
-    weight: ''
-  }
-
-  handleSubmit = event => {
-    event.preventDefault();
-    console.log(this.state);
-  }
-
-  handleChange = ({ target }) => {
-    this.setState({ [target.name]: target.value });
-  }
-
-  render() {
-    const {
-      name,
-      age,
-      weight
-    } = this.state;
-
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <input name="name" value={name} onChange={this.handleChange} />
-        <input name="age" value={age} onChange={this.handleChange} />
-        <input name="weight" value={weight} onChange={this.handleChange} />
-        <button>Create Dog</button>
-      </form>
-    )
-  }
-}
-```
+Method | Use
+------ | --
+`static getDerivedStateFromError(error)` | Used to update state
+`componentDidCatch` | Used to log messages

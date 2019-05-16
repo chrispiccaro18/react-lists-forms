@@ -1,31 +1,25 @@
-# React Forms Exercises
+# React Children Exercises
 
-## Create and render a TextFormatter component
+## Create and render a Sidebar component
 
-Demo [Simple Text Formatter](https://demo.alchemycodelab.io/simple-text-formatter/)
+Demo [Simple Sidebar](https://demo.alchemycodelab.io/simple-sidebar)
 
-* create a `TextFormatter` component
-  * use a text input to capture text
-  * print text below input
-  * use a color input to set the color of the text
-  * BONUS
-    * use figlet (`npm i figlet`) to format the text
-    * HINT: you'll need to `cp -r node_modules/figlet/fonts .`
-* create an `App` component
+* create a `Sidebar` component
+  * a sidebar has children that render in a `<nav>` element
+* create an `App` component that uses your `Sidebar` component
 * create an `index.js` that renders your `App` component
 
-## Create and render a CreateColor component
+## Create and render a error thing
 
-Demo [Simple Colors Form](https://demo.alchemycodelab.io/simple-colors-form)
+Demo [Simple Error](https://demo.alchemycodelab.io/simple-error)
 
-* create a `CreateColor` component takes an `addColor` property
-  * `CreateColor` is a form with a name and color input
-  * on submitting the form invoke the `addColor` property to add a new color
-* create a `Colors` component that takes an array of colors
-  * a color has name, hex, and rgb
-  * for each color in the array create a `Color` component
-  * display all `Color` components in a ul
-* create a `ColorList` container that holds your state
-  * store a list of colors in `ColorList` state
-* create an `App` component that uses `ColorList`
+* create an `ErrorBoundary` component
+  * display `<h3>Error!</h3>` if there is an error
+  * `console.error` the error
+  * otherwise render children components
+* create a `Bad` component that throws an error
+* create a `Good` component that renders `<h1>Good</h1>`
+* create an `App` component that uses your components
+  * what happens if you wrap `ErrorBoundary` around `Bad`?
+  * what happens if you don't?
 * create an `index.js` that renders your `App` component
