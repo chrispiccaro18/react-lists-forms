@@ -8,13 +8,49 @@ exports[`TextFormatter component renders a TextFormatter 1`] = `
     type="text"
     value=""
   />
+  <select
+    name="font"
+    onChange={[Function]}
+    value="Banner"
+  >
+    <option
+      key="Alpha"
+      value="Alpha"
+    >
+      Alpha
+    </option>
+    <option
+      key="Avatar"
+      value="Avatar"
+    >
+      Avatar
+    </option>
+    <option
+      key="Banner"
+      value="Banner"
+    >
+      Banner
+    </option>
+    <option
+      key="Alligator"
+      value="Alligator"
+    >
+      Alligator
+    </option>
+    <option
+      key="Linux"
+      value="Linux"
+    >
+      Linux
+    </option>
+  </select>
   <input
     name="color"
     onChange={[Function]}
     type="color"
     value="#000000"
   />
-  <p
+  <pre
     style={
       Object {
         "color": "#000000",
