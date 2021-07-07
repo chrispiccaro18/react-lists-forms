@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateColor component renders a CreateColor 1`] = `
+<Fragment>
+  <form
+    onSubmit={[Function]}
+  >
+    <input
+      name="colorName"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+    <input
+      name="color"
+      onChange={[Function]}
+      type="color"
+      value="#ff0000"
+    />
+    <button>
+      Create Color
+    </button>
+  </form>
+</Fragment>
+`;
